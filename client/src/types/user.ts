@@ -1,6 +1,7 @@
 export interface IUser {
-  vardas: string;
-  pavarde: string;
-  elPastas: string;
-  amzius: number;
+  readonly _id?: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  age: number;
 }

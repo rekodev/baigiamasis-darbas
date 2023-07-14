@@ -2,13 +2,14 @@ import { StyledButton } from './style';
 
 interface IButton {
   text: string;
-  onClick: () => void;
+  onClick: any;
   bgColor: string;
+  color?: string;
 }
 
-const Button = ({ text, onClick, bgColor }: IButton) => {
+const Button = ({ text, onClick, bgColor, color }: IButton) => {
   return (
-    <StyledButton $bgcolor={bgColor} onClick={onClick}>
+    <StyledButton $color={color} $bgcolor={bgColor} onClick={onClick}>
       {text}
     </StyledButton>
   );

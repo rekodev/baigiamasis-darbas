@@ -1,19 +1,16 @@
-import { COLORS } from '../../styles/enums';
-import Button from '../Button';
-import { StyledHeader } from './style';
+import SearchBar from '../SearchBar';
+import { StyledHeader, StyledHeaderContainer } from './style';
 
-const handleClick = () => {
-  alert('clicked');
-};
+interface IHeaderProps {
+  setSearchTerm: (value: string) => void;
+}
 
-const Header = () => {
+const Header = ({ setSearchTerm }: IHeaderProps) => {
   return (
     <StyledHeader>
-      <Button
-        onClick={handleClick}
-        bgColor={COLORS.Gray}
-        text='Pridėti naują'
-      />
+      <StyledHeaderContainer>
+        <SearchBar setSearchTerm={setSearchTerm} />
+      </StyledHeaderContainer>
     </StyledHeader>
   );
 };

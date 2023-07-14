@@ -1,11 +1,13 @@
 import { createGlobalStyle } from 'styled-components';
+import backgroundImg from '../assets/big-data-database-td1nyj20hyzfffmt.jpg';
 
 const GlobalStyles = createGlobalStyle`
     :root {
     }
     
     body {
-        font-family: 'Comfortaa', cursive;
+        font-family: 'Roboto', sans-serif;
+        background: url(${backgroundImg});
     }
 
     * {

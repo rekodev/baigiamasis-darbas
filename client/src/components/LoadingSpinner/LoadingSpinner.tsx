@@ -1,12 +1,12 @@
 import { StyledLoadingSpinner, StyledLoadingSpinnerWrapper } from './style';
 
 interface ILoadingSpinnerProps {
-  fullScreen?: boolean;
+  $fullscreen?: boolean;
 }
 
-const LoadingSpinner = ({ fullScreen }: ILoadingSpinnerProps) => {
+const LoadingSpinner = ({ $fullscreen }: ILoadingSpinnerProps) => {
   return (
-    <StyledLoadingSpinnerWrapper fullScreen={fullScreen}>
+    <StyledLoadingSpinnerWrapper $fullscreen={$fullscreen}>
       <StyledLoadingSpinner />
     </StyledLoadingSpinnerWrapper>
   );

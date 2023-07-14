@@ -1,7 +1,8 @@
 import styled from 'styled-components';
+import { COLORS } from '../../types/enums';
 
 interface IStyledLoadingSpinnerProps {
-  fullScreen?: boolean;
+  $fullscreen?: boolean;
 }
 
 export const StyledLoadingSpinner = styled.div<IStyledLoadingSpinnerProps>`
@@ -15,7 +16,7 @@ export const StyledLoadingSpinner = styled.div<IStyledLoadingSpinnerProps>`
   }
 
   border: 8px solid #f3f3f3;
-  border-top: 8px solid coral;
+  border-top: 8px solid ${COLORS.Blue};
   border-radius: 50%;
   width: 60px;
   height: 60px;
@@ -26,6 +27,5 @@ export const StyledLoadingSpinnerWrapper = styled.div<IStyledLoadingSpinnerProps
   display: flex;
   justify-content: center;
   align-items: center;
-  /* height: ${(props) => (props.fullScreen ? '100vh' : '60px')}; */
   height: 100%;
 `;

@@ -7,9 +7,10 @@ export const StyledTable = styled.div`
 `;
 
 export const StyledTableContainer = styled.div`
-  background-color: #f8f8f8;
+  border-radius: 15px 15px 0 0;
+  background: linear-gradient(0deg, #fff, #ddd);
   overflow-x: auto;
   width: 100%;
   max-width: 1100px;
-  height: 85%;
+  height: 90%;
 `;

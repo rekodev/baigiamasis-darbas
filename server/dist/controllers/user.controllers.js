@@ -39,7 +39,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getAllUsers = void 0;
+exports.editUser = exports.deleteUser = exports.postUser = exports.getAllUsers = void 0;
 var user_model_1 = __importDefault(require("../models/user.model"));
 var getAllUsers = function (_req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var users, error_1;
@@ -61,3 +61,89 @@ var getAllUsers = function (_req, res) { return __awaiter(void 0, void 0, void 0
     });
 }); };
 exports.getAllUsers = getAllUsers;
+var postUser = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var data, user, savedUser, error_2;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                data = req.body;
+                _a.label = 1;
+            case 1:
+                _a.trys.push([1, 5, , 6]);
+                if (!data) return [3 /*break*/, 3];
+                user = new user_model_1.default(data);
+                return [4 /*yield*/, user.save()];
+            case 2:
+                savedUser = _a.sent();
+                res.status(201).json(savedUser);
+                return [3 /*break*/, 4];
+            case 3:
+                res.status(404).json({ message: 'Error adding user' });
+                _a.label = 4;
+            case 4: return [3 /*break*/, 6];
+            case 5:
+                error_2 = _a.sent();
+                res.status(500).json({ message: 'Server error', error: error_2 });
+                return [3 /*break*/, 6];
+            case 6: return [2 /*return*/];
+        }
+    });
+}); };
+exports.postUser = postUser;
+var deleteUser = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var id, deletedUser, error_3;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                id = req.params.id;
+                _a.label = 1;
+            case 1:
+                _a.trys.push([1, 3, , 4]);
+                return [4 /*yield*/, user_model_1.default.findByIdAndDelete(id)];
+            case 2:
+                deletedUser = _a.sent();
+                if (deletedUser) {
+                    res.status(204).json({ message: 'User deleted successfully' });
+                }
+                else {
+                    res.status(404).json({ message: 'User with given ID not found' });
+                }
+                return [3 /*break*/, 4];
+            case 3:
+                error_3 = _a.sent();
+                res.status(500).json({ message: 'Server error', error: error_3 });
+                return [3 /*break*/, 4];
+            case 4: return [2 /*return*/];
+        }
+    });
+}); };
+exports.deleteUser = deleteUser;
+var editUser = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var id, data, editedUser, error_4;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                id = req.params.id;
+                data = req.body;
+                _a.label = 1;
+            case 1:
+                _a.trys.push([1, 3, , 4]);
+                return [4 /*yield*/, user_model_1.default.findByIdAndUpdate(id, data)];
+            case 2:
+                editedUser = _a.sent();
+                if (editedUser) {
+                    res.json(exports.editUser);
+                }
+                else {
+                    res.status(404).json({ message: 'User with given ID not found' });
+                }
+                return [3 /*break*/, 4];
+            case 3:
+                error_4 = _a.sent();
+                res.status(500).json({ message: 'Server error', error: error_4 });
+                return [3 /*break*/, 4];
+            case 4: return [2 /*return*/];
+        }
+    });
+}); };
+exports.editUser = editUser;
