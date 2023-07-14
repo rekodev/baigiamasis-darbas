@@ -6,7 +6,7 @@ export const StyledTableRow = styled.div`
   gap: 1rem;
   padding: 0.25rem 0;
   position: relative;
-  height: 56px;
+  height: 80px;
 `;
 
 export const StyledButtonContainer = styled.div`
@@ -17,4 +17,11 @@ export const StyledButtonContainer = styled.div`
   margin-left: 1rem;
   position: absolute;
   right: 0;
+
+  p {
+    position: absolute;
+    left: 0;
+    top: -22.5px;
+    font-size: 14px;
+  }
 `;

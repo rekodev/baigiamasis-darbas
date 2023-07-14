@@ -15,15 +15,15 @@ Sekite šiuos žingsnius, kad paleisti aplikaciją ant jūsų vietinio įrengini
 
 **Server**
 
-1. Naviguojam i server direktorija `cd server`.
+1. Naviguojam į server direktorija `cd server`.
 2. Instaliuojam dependencies su komanda `npm install`.
 3. Paleidziam serverį development aplinkoje su komanda `npm run dev`.
 
 **Client**
 
-1. Navigate to the client directory `cd client`.
-2. Install dependencies with `npm install`.
-3. Run the client with `npm start`.
+1. Naviguojam į server direktorija `cd client`.
+2. Instaliuojam dependencies su komanda `npm install`.
+3. Paleidžiam client'ą develipment aplinkoje su komanda `npm start`.
 
 ## Naudojimas
 

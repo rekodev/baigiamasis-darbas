@@ -13,7 +13,7 @@ interface ITableProps {
 
 const Table = ({ searchTerm }: ITableProps) => {
   const [currentPage, setCurrentPage] = useState(1);
-  const [usersPerPage, _setUsersPerPage] = useState(10);
+  const [usersPerPage, _setUsersPerPage] = useState(5);
   const [filteredUsers, setFilteredUsers] = useState<IUser[]>([]);
 
   const { users: userData, isLoading, isError, error } = useUsers();

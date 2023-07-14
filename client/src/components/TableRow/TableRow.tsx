@@ -102,6 +102,7 @@ const TableRow = ({ _id, firstName, lastName, email, age }: IUser) => {
             </>
           ) : isBeingDeleted ? (
             <>
+              <p>Ar tikrai norite ištrinti?</p>
               <Button
                 bgColor={COLORS.Error}
                 color='#FFF'
