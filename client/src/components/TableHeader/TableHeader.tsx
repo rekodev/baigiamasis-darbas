@@ -1,13 +1,15 @@
 import { StyledTableHeader } from './style';
 
-const TableHeader = () => {
+interface ITableHeader {
+  tableHeaderCells: string[];
+}
+
+const TableHeader = ({ tableHeaderCells }: ITableHeader) => {
   return (
     <StyledTableHeader>
-      {' '}
-      <p>Vardas</p>
-      <p>Pavardė</p>
-      <p>El. paštas</p>
-      <p>Amžius</p>
+      {tableHeaderCells.map((cell, idx) => (
+        <p key={idx}>{cell}</p>
+      ))}
     </StyledTableHeader>
   );
 };

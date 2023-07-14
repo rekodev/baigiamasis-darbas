@@ -1,5 +1,3 @@
-// AlertModal.tsx
-
 import { useEffect, useRef } from 'react';
 import { StyledModal } from '../../styles/UtilityStyles';
 

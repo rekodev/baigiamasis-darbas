@@ -3,7 +3,7 @@ import useUsers from '../../hooks/useUsers';
 import { IUser } from '../../types/user';
 import LoadingSpinner from '../LoadingSpinner';
 import Pagination from '../Pagination';
-import TableHeading from '../TableHeader';
+import TableHeader from '../TableHeader';
 import TableRow from '../TableRow';
 import { StyledTable, StyledTableContainer } from './style';
 
@@ -13,7 +13,6 @@ interface ITableProps {
 
 const Table = ({ searchTerm }: ITableProps) => {
   const [currentPage, setCurrentPage] = useState(1);
-  const [previousPage, setPreviousPage] = useState(1);
   const [usersPerPage, _setUsersPerPage] = useState(10);
   const [filteredUsers, setFilteredUsers] = useState<IUser[]>([]);
 
@@ -47,11 +46,14 @@ const Table = ({ searchTerm }: ITableProps) => {
   // Change page
   const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
+  // Table header cells
+  const tableHeaderCells = ['Vardas', 'Pavardė', 'El. paštas', 'Amžius'];
+
   return (
     <>
       <StyledTableContainer>
         <StyledTable>
-          <TableHeading />
+          <TableHeader tableHeaderCells={tableHeaderCells} />
           {currentPosts.length > 0 ? (
             currentPosts.map((user: IUser, idx: number) => (
               <TableRow

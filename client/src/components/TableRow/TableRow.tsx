@@ -1,15 +1,13 @@
 import { useState } from 'react';
 import useDeleteUser from '../../hooks/useDeleteUser';
 import { useEditUser } from '../../hooks/useEditUser';
+import { IEditableCell } from '../../types/editableCell';
+import { COLORS } from '../../types/enums';
 import { IUser } from '../../types/user';
 import AlertModal from '../AlertModal';
 import Button from '../Button';
-import {
-  StyledButtonContainer,
-  StyledEditableCells,
-  StyledTableRow,
-} from './style';
-import { COLORS } from '../../types/enums';
+import TableCells from '../TableCells';
+import { StyledButtonContainer, StyledTableRow } from './style';
 
 const TableRow = ({ _id, firstName, lastName, email, age }: IUser) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -63,56 +61,27 @@ const TableRow = ({ _id, firstName, lastName, email, age }: IUser) => {
     }
   };
 
+  // Table cells inside TableRow
+  const cells = [firstName, lastName, email, age.toString()];
+
+  const editableCells: IEditableCell<any>[] = [
+    { value: firstName, setNewValue: setNewFirstName },
+    { value: lastName, setNewValue: setNewLastName },
+    { value: email, setNewValue: setNewEmail },
+    { value: age, setNewValue: setNewAge },
+  ];
+
   return (
     <>
       <StyledTableRow>
         {isBeingEdited ? (
-          <StyledEditableCells>
-            <p
-              contentEditable
-              suppressContentEditableWarning
-              onInput={(e) =>
-                setNewFirstName((e.target as HTMLElement).textContent || '')
-              }
-            >
-              {firstName}
-            </p>
-            <p
-              contentEditable
-              suppressContentEditableWarning
-              onInput={(e) =>
-                setNewLastName((e.target as HTMLElement).textContent || '')
-              }
-            >
-              {lastName}
-            </p>
-            <p
-              contentEditable
-              suppressContentEditableWarning
-              onInput={(e) =>
-                setNewEmail((e.target as HTMLElement).textContent || '')
-              }
-            >
-              {email}
-            </p>
-            <p
-              contentEditable
-              suppressContentEditableWarning
-              onInput={(e) =>
-                setNewAge(
-                  parseInt((e.target as HTMLElement).textContent || '0')
-                )
-              }
-            >
-              {age}
-            </p>
-          </StyledEditableCells>
+          <TableCells
+            cells={[firstName, lastName, email, age.toString()]}
+            editableCells={editableCells}
+          />
         ) : (
           <>
-            <p>{firstName}</p>
-            <p>{lastName}</p>
-            <p>{email}</p>
-            <p>{age}</p>
+            <TableCells cells={cells} />
           </>
         )}
 
