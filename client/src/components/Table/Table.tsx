@@ -27,6 +27,7 @@ const Table = ({ searchTerm }: ITableProps) => {
             .includes(searchTerm.toLowerCase())
         )
       );
+      if (searchTerm) setCurrentPage(1);
     }
   }, [userData, searchTerm]);
 

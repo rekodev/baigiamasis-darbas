@@ -12,5 +12,6 @@ export const StyledTableContainer = styled.div`
   overflow-x: auto;
   width: 100%;
   max-width: 1100px;
-  height: calc(200% / 3);
+  /* height: calc(200% / 3); */
+  height: 75%;
 `;

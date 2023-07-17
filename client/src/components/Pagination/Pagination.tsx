@@ -22,9 +22,18 @@ const Pagination = ({
   }
 
   // Ellipsis (...)
-  const ellipsis = <li style={{ pointerEvents: 'none' }}>...</li>;
-  let ellipsisLeft = false;
-  let ellipsisRight = false;
+  const ellipsisLeft = (
+    <li style={{ pointerEvents: 'none' }} key={'ellipsis-left'}>
+      ...
+    </li>
+  );
+  const ellipsisRight = (
+    <li style={{ pointerEvents: 'none' }} key={'ellipsis-right'}>
+      ...
+    </li>
+  );
+  let ellipsisLeftRendered = false;
+  let ellipsisRightRendered = false;
 
   return (
     <StyledPagination>
@@ -42,21 +51,21 @@ const Pagination = ({
                 $active={idx === currentPage - 1}
                 key={number}
               >
-                <a onClick={() => paginate(number)} href='#'>
+                <a key={number} onClick={() => paginate(number)} href='#'>
                   {number}
                 </a>
               </StyledPaginationPageNumber>
             );
-          } else if (number === 2 && currentPage > 3 && !ellipsisLeft) {
-            ellipsisLeft = true;
-            return ellipsis;
+          } else if (number === 2 && currentPage > 3 && !ellipsisLeftRendered) {
+            ellipsisLeftRendered = true;
+            return ellipsisLeft;
           } else if (
             number === pageNumbers.length - 1 &&
             currentPage < pageNumbers.length - 2 &&
-            !ellipsisRight
+            !ellipsisRightRendered
           ) {
-            ellipsisRight = true;
-            return ellipsis;
+            ellipsisRightRendered = true;
+            return ellipsisRight;
           }
         })}
       </ul>

@@ -28,6 +28,10 @@ const TableRow = ({ _id, firstName, lastName, email, age }: IUser) => {
 
   const handleEditUser = () => {
     setIsBeingEdited(true);
+    setNewFirstName(firstName);
+    setNewLastName(lastName);
+    setNewEmail(email);
+    setNewAge(age);
   };
 
   const handleSaveChange = () => {
