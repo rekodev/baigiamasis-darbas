@@ -13,11 +13,13 @@ const TableRow = ({ _id, firstName, lastName, email, age }: IUser) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isBeingEdited, setIsBeingEdited] = useState(false);
   const [isBeingDeleted, setIsBeingDeleted] = useState(false);
-
-  const [newFirstName, setNewFirstName] = useState(firstName);
-  const [newLastName, setNewLastName] = useState(lastName);
-  const [newEmail, setNewEmail] = useState(email);
-  const [newAge, setNewAge] = useState(age);
+  const [newUserData, setNewUserData] = useState({
+    _id: _id,
+    firstName: firstName,
+    lastName: lastName,
+    email: email,
+    age: age,
+  });
 
   const deleteUserMutation = useDeleteUser();
   const editUserMutation = useEditUser();
@@ -28,27 +30,26 @@ const TableRow = ({ _id, firstName, lastName, email, age }: IUser) => {
 
   const handleEditUser = () => {
     setIsBeingEdited(true);
-    setNewFirstName(firstName);
-    setNewLastName(lastName);
-    setNewEmail(email);
-    setNewAge(age);
+
+    setNewUserData({
+      _id: _id,
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      age: age,
+    });
   };
 
   const handleSaveChange = () => {
     if (isBeingEdited) {
-      const dataToBeEdited: IUser = {
-        _id: _id,
-        firstName: newFirstName,
-        lastName: newLastName,
-        email: newEmail,
-        age: newAge,
-      };
+      editUserMutation.mutate(newUserData);
 
-      editUserMutation.mutate(dataToBeEdited);
       setIsBeingEdited(false);
     } else if (isBeingDeleted) {
       if (_id) deleteUserMutation.mutate(_id);
+
       setIsBeingDeleted(false);
+
       setIsOpen(true);
     }
   };
@@ -56,10 +57,14 @@ const TableRow = ({ _id, firstName, lastName, email, age }: IUser) => {
   const handleCancellation = () => {
     if (isBeingEdited) {
       setIsBeingEdited(false);
-      setNewFirstName(firstName);
-      setNewLastName(lastName);
-      setNewEmail(email);
-      setNewAge(age);
+
+      setNewUserData({
+        _id: _id,
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+        age: age,
+      });
     } else if (isBeingDeleted) {
       setIsBeingDeleted(false);
     }
@@ -69,10 +74,26 @@ const TableRow = ({ _id, firstName, lastName, email, age }: IUser) => {
   const cells = [firstName, lastName, email, age.toString()];
 
   const editableCells: IEditableCell<any>[] = [
-    { value: firstName, setNewValue: setNewFirstName },
-    { value: lastName, setNewValue: setNewLastName },
-    { value: email, setNewValue: setNewEmail },
-    { value: age, setNewValue: setNewAge },
+    {
+      value: firstName,
+      setNewValue: (newValue) =>
+        setNewUserData((prevState) => ({ ...prevState, firstName: newValue })),
+    },
+    {
+      value: lastName,
+      setNewValue: (newValue) =>
+        setNewUserData((prevState) => ({ ...prevState, lastName: newValue })),
+    },
+    {
+      value: email,
+      setNewValue: (newValue) =>
+        setNewUserData((prevState) => ({ ...prevState, email: newValue })),
+    },
+    {
+      value: age,
+      setNewValue: (newValue) =>
+        setNewUserData((prevState) => ({ ...prevState, age: newValue })),
+    },
   ];
 
   return (

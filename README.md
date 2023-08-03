@@ -4,10 +4,10 @@ Mano baigiamasis darbas turi pilną funkcionalumą, kur galima pridėti, ištrin
 
 ## Turinys
 
-- [Instaliacija](#installation)
-- [Naudojimas](#usage)
-- [Projekto Struktūra](#project-structure)
-- [Funkcionalumas](#features)
+- [Instaliacija](#instaliacija)
+- [Naudojimas](#naudojimas)
+- [Projekto Struktūra](#projekto-struktūra)
+- [Funkcionalumas](#funkcionalumas)
 
 ## Instaliacija
 
@@ -23,7 +23,7 @@ Sekite šiuos žingsnius, kad paleisti aplikaciją ant jūsų vietinio įrengini
 
 1. Naviguojam į server direktorija `cd client`.
 2. Instaliuojam dependencies su komanda `npm install`.
-3. Paleidžiam client'ą develipment aplinkoje su komanda `npm start`.
+3. Paleidžiam client'ą development aplinkoje su komanda `npm run dev`.
 
 ## Naudojimas
 
